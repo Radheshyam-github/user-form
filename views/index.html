@@ -211,7 +211,7 @@
         },
         error: function (error) {
           console.log(error);
-          alert('Error creating user: ');
+          alert('Error creating user not validate: ');
         }
       });
     });
@@ -339,7 +339,7 @@
     const socketId = socket.id;
 
     $.ajax({
-      url: 'https://node-task-m7sx.onrender.com/checkUser',
+      url: 'http://localhost:3003/server/checkUser',
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({ email, socketId }),
