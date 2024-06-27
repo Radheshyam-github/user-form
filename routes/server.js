@@ -44,6 +44,7 @@ router.post(
 
 
 
+
 // GET request to fetch users
 router.get('/display_data', async function (req, res) {
   try {
