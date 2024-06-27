@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('./models/user');
 
+
+
 // POST request to create a new user
 // POST request to create a new user
 router.post(
@@ -39,7 +41,6 @@ router.post(
     res.status(500).send(err.message);
   }
 });
-
 
 
 

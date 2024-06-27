@@ -17,7 +17,7 @@ const liveUsers = {};
 
 // MongoDB connection
 mongoose.connect(
-  "mongodb+srv://User-Form:4U3NYx7cTJTPpNH@cluster0.m5jwce1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",{
+  "mongodb+srv://User-Form:4U3NYx7cTJTPpNH@cluster0.m5jwce1.mongodb.net/user_data",{
     dbName:"User-Form"
   }
 
