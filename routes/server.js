@@ -33,6 +33,7 @@ router.post(
       socketId
     });
     await user.save();
+    console.log(user);
     req.liveUsers[user.socketId] = user;
     req.io.emit('new-user', user);
     res.status(201).send('User created successfully');
@@ -41,7 +42,6 @@ router.post(
     res.status(500).send(err.message);
   }
 });
-
 
 
 

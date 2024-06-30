@@ -23,7 +23,10 @@ mongoose.connect(
 
 ).then( 
   () => {
-    console.log("Connected to MongoDB Atlas ");
+    server.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+    // console.log("Connected to MongoDB Atlas ");
   }
 ).catch(
   (error) => {
@@ -107,6 +110,7 @@ io.on('connection', (socket) => {
       );
 
       if (user) {
+        console.log(user);
         liveUsers[socket.id] = user;
         io.emit('update-live-users', Object.values(liveUsers));
         console.log(`${name} joined with socket ID: ${socket.id}`);
@@ -135,13 +139,15 @@ io.on('connection', (socket) => {
 });
 
 
-app.post('/checkUser', async (req, res) => {
+app.post('/server/checkUser', async (req, res) => {
   const { email, socketId } = req.body;
+  
   try {
     const user = await User.findOne({ email });
     if (user) {
       user.socketId = socketId;
       await user.save();
+      console.log(user);
       liveUsers[socketId] = user;
       io.emit('new-user', liveUsers); // Broadcast updated live users list to all clients
       res.json({ exists: true, user });
@@ -149,6 +155,7 @@ app.post('/checkUser', async (req, res) => {
       res.json({ exists: false });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).send(err.message);
   }
 });
@@ -160,9 +167,7 @@ app.use(function (req, res, next) {
 });
 
 // Start server
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+
 
 module.exports = app;
  
