@@ -95,7 +95,8 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       display: none;
     }
-    .livedatashow{
+
+    .livedatashow {
       display: none;
     }
 
@@ -119,7 +120,8 @@
     #userData {
       display: none;
     }
-    #livebackpage{
+
+    #livebackpage {
       display: none;
     }
   </style>
@@ -133,15 +135,15 @@
     <h1>Create User</h1>
 
     <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed"
+    <input type="text" id="firstName" name="firstName" required  title="Only alphabets are allowed"
       placeholder="first-name">
 
     <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed"
+    <input type="text" id="lastName" name="lastName" required  title="Only alphabets are allowed"
       placeholder="last-name">
 
     <label for="mobileNo">Mobile Number:</label>
-    <input type="text" id="mobileNo" name="mobileNo" pattern="\d{10}" required title="Enter 10 digit mobile number"
+    <input type="text" id="mobileNo" name="mobileNo"  required title="Enter 10 digit mobile number"
       placeholder="mobile-number">
 
     <label for="email">Email:</label>
@@ -151,15 +153,15 @@
     <input type="text" id="street" name="street" required placeholder="street">
 
     <label for="city">City:</label>
-    <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed"
+    <input type="text" id="city" name="city" required  title="Only alphabets are allowed"
       placeholder="city">
 
     <label for="state">State:</label>
-    <input type="text" id="state" name="state" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed"
+    <input type="text" id="state" name="state" required  title="Only alphabets are allowed"
       placeholder="state">
 
     <label for="country">Country:</label>
-    <input type="text" id="country" name="country" required pattern="[A-Za-z\s]+" title="Only alphabets are allowed"
+    <input type="text" id="country" name="country" required  title="Only alphabets are allowed"
       placeholder="country">
 
     <label for="loginId">Login ID:</label>
@@ -176,7 +178,7 @@
   </form>
 
   <form id="userForm" style="display:none;">
-    <!-- <button type="button" id="backpagelive " class=" w-25"> Back Page </button>~~ -->
+    <button type="button" id="backpagelive " class=" w-25"> Back Page </button>
     <h2>Enter Registered Details</h2>
     <input type="email" id="formEmail" placeholder="Email" required>
     <button type="submit">Join</button>
@@ -187,7 +189,7 @@
   </div>
 
   <ul id="liveUsers">
-    <button type="button" id="livebackpage" class="livedatashow" > Back Page </button>
+    <button type="button" id="livebackpage" class="livedatashow"> Back Page </button>
   </ul>
 </body>
 
@@ -267,6 +269,7 @@
             $('#createUserForm').show();
             $('#userData').hide();
           });
+         
         },
         error: function (error) {
           alert('Error fetching users');
@@ -287,6 +290,13 @@
     $('#userForm').show();
 
   });
+  $('#backpagelive').click(function () {
+    $('#createUserForm').show();
+    $('#userForm').hide();
+
+  });
+
+
 
 
 
@@ -342,7 +352,7 @@
       popup.remove();
       // $('#createUserForm').show();
       // $('#liveUsers').hide();
-      
+
     });
   }
 
@@ -376,6 +386,7 @@
     const email = $('#formEmail').val();
     const socketId = socket.id;
 
+    
     $.ajax({
       url: 'http://localhost:3003/server/checkUser',
       type: 'POST',
@@ -411,7 +422,10 @@
         console.log(err);
         console.error('Error hai :', err);
       }
+
+
     });
+
   })
   // Function to display the popup
   function displayPopup(firstName, lastName) {
